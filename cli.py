@@ -15,6 +15,7 @@ import sys
 from organizer.categories import (DEFAULT_EXTENSIONS, DEFAULT_KEYWORDS,
                                   build_extension_map)
 from organizer.mover import check_paths, execute_plan, plan_moves
+from organizer.report import build_stats, print_report
 
 
 def build_parser():
@@ -31,6 +32,10 @@ def build_parser():
                           help="really move the files (default: preview only)")
     organize.add_argument("--verbose", action="store_true",
                           help="print every file that is moved")
+
+    stats = subparsers.add_parser(
+        "stats", help="report file count and size per category")
+    stats.add_argument("source", help="the client's dump folder")
     return parser
 
 
@@ -55,6 +60,12 @@ def run_organize(args, ext_map, keywords):
         print(f"Planned: {counts['planned']}   Skipped: {counts['skipped']}")
 
 
+def run_stats(args, ext_map, keywords):
+    """Build the statistics for the source folder and print them."""
+    stats = build_stats(args.source, ext_map, keywords)
+    print_report(stats)
+
+
 def main():
     """Parse the arguments and run the chosen command."""
     parser = build_parser()
@@ -65,6 +76,8 @@ def main():
     try:
         if args.command == "organize":
             run_organize(args, ext_map, keywords)
+        elif args.command == "stats":
+            run_stats(args, ext_map, keywords)
     except (ValueError, OSError) as error:
         print(f"Error: {error}", file=sys.stderr)
         sys.exit(1)
