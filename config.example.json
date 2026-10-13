@@ -1,0 +1,5 @@
+{
+  "client": "Example Cafe",
+  "extensions": { "Images": ["jpg", "png"], "Menu": ["pdf"] },
+  "keywords": { "logo": "Branding", "story": "Social" }
+}

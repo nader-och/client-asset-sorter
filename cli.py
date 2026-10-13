@@ -13,7 +13,7 @@ import argparse
 import sys
 
 from organizer.categories import (DEFAULT_EXTENSIONS, DEFAULT_KEYWORDS,
-                                  build_extension_map)
+                                  build_extension_map, load_config)
 from organizer.mover import check_paths, execute_plan, plan_moves
 from organizer.report import build_stats, print_report
 
@@ -32,10 +32,14 @@ def build_parser():
                           help="really move the files (default: preview only)")
     organize.add_argument("--verbose", action="store_true",
                           help="print every file that is moved")
+    organize.add_argument("--config", metavar="FILE",
+                          help="client config file (JSON)")
 
     stats = subparsers.add_parser(
         "stats", help="report file count and size per category")
     stats.add_argument("source", help="the client's dump folder")
+    stats.add_argument("--config", metavar="FILE",
+                       help="client config file (JSON)")
     return parser
 
 
@@ -70,10 +74,14 @@ def main():
     """Parse the arguments and run the chosen command."""
     parser = build_parser()
     args = parser.parse_args()
-    ext_map = build_extension_map(DEFAULT_EXTENSIONS)
-    keywords = DEFAULT_KEYWORDS
 
     try:
+        if args.config:
+            ext_map, keywords = load_config(args.config)
+        else:
+            ext_map = build_extension_map(DEFAULT_EXTENSIONS)
+            keywords = DEFAULT_KEYWORDS
+
         if args.command == "organize":
             run_organize(args, ext_map, keywords)
         elif args.command == "stats":
