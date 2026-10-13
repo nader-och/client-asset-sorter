@@ -58,3 +58,4 @@ Functions with docstrings and return values; dictionaries (`.get` with a default
 6. Add stats command with per-category counts, sizes and aligned report
 7. Add JSON client config with strict regex validation and --config
 8. Add README and contributions files, make project description generic (co-authored with Taha)
+9. Tidy formatting in cli.py and report.py (co-authored with Taha)

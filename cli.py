@@ -21,7 +21,7 @@ from organizer.report import build_stats, print_report
 def build_parser():
     """Create the argument parser with one subcommand per action."""
     parser = argparse.ArgumentParser(
-                description="Sort a client's WhatsApp dump into agency folders.")
+        description="Sort a client's WhatsApp dump into agency folders.")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     organize = subparsers.add_parser(

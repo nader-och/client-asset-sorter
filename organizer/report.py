@@ -55,4 +55,5 @@ def print_report(stats):
         share = entry["count"] / total
         size = format_size(entry["size"])
         print(f"{category:<12}{entry['count']:>6}{share:>8.1%}{size:>12}")
-    print(f"{'Total':<12}{total:>6}{'':>8}{format_size(stats['total_size']):>12}")
+    total_size = format_size(stats["total_size"])
+    print(f"{'Total':<12}{total:>6}{'':>8}{total_size:>12}")
