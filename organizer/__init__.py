@@ -1,1 +1,1 @@
-"""Core package for Orena Asset Sorter."""
+"""Core package for Client Asset Sorter."""

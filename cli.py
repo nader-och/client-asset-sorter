@@ -1,6 +1,6 @@
-"""Orena Asset Sorter - command-line entry point.
+"""Client Asset Sorter - command-line entry point.
 
-Sorts a client's WhatsApp dump folder into Orena Studio's standard
+Sorts a client's WhatsApp dump folder into a digital agency's standard
 delivery structure (Images, Videos, Branding, Menu, ...).
 Preview is the default; nothing moves without --apply.
 
@@ -21,7 +21,7 @@ from organizer.report import build_stats, print_report
 def build_parser():
     """Create the argument parser with one subcommand per action."""
     parser = argparse.ArgumentParser(
-        description="Sort a client's WhatsApp dump into Orena Studio folders.")
+                description="Sort a client's WhatsApp dump into agency folders.")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     organize = subparsers.add_parser(
