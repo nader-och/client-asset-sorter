@@ -1,0 +1,17 @@
+# Python bytecode (created automatically when modules are imported)
+__pycache__/
+*.pyc
+
+# Virtual environments
+.venv/
+venv/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Disposable test folders - never commit these
+demo/
+demo_*/
